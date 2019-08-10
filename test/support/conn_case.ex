@@ -26,13 +26,13 @@ defmodule SecretKeeperWeb.ConnCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(SecretKeeper.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(SecretKeeper.Repo, {:shared, self()})
     end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
 end

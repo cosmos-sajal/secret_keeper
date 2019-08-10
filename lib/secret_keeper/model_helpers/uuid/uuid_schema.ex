@@ -3,8 +3,6 @@ defmodule SecretKeeper.ModelHelpers.UUID.Schema do
   Contains schema macros to add uuid fields to a schema
   """
 
-  import Ecto
-
   @doc """
   Adds the uuid column to a schema
       defmodule User do

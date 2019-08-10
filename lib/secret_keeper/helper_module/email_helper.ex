@@ -12,8 +12,12 @@ defmodule SecretKeeper.HelperModule.EmailHelper do
     - changeset: struct
     - key: atom
   """
-  def validate_email(changeset, key \\ :email) do
-    changeset
-    |> validate_format(key, ~r/^[A-Za-z0-9._%+-+']+@[A-Za-z0-9.-]+\.[A-Za-z]{2,5}$/)
+  def validate(changeset, key \\ :email) do
+    if changeset.valid? do
+      changeset
+      |> validate_format(key, ~r/^[A-Za-z0-9._%+-+']+@[A-Za-z0-9.-]+\.[A-Za-z]{2,5}$/)
+    else
+      changeset
+    end
   end
 end

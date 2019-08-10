@@ -28,8 +28,9 @@ defmodule SecretKeeperWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/secret_keeper_web/templates",
-                        namespace: SecretKeeperWeb
+      use Phoenix.View,
+        root: "lib/secret_keeper_web/templates",
+        namespace: SecretKeeperWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -40,6 +41,40 @@ defmodule SecretKeeperWeb do
       import SecretKeeperWeb.Router.Helpers
       import SecretKeeperWeb.ErrorHelpers
       import SecretKeeperWeb.Gettext
+    end
+  end
+
+  def params do
+    quote do
+      import Plug.Conn
+
+      use Phoenix.Controller
+      use SecretKeeper, :model
+
+      def init(options), do: options
+
+      defp error_messages(changeset) do
+        Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+          Enum.reduce(opts, msg, fn {key, value}, acc ->
+            String.replace(acc, "%{#{key}}", to_string(value))
+          end)
+        end)
+      end
+
+      def call(conn, key) do
+        changeset = __MODULE__.changeset(struct(__MODULE__), conn.params)
+
+        if changeset.valid? do
+          validated_params = Map.merge(struct(__MODULE__), changeset.changes)
+
+          conn |> assign(key, validated_params)
+        else
+          conn
+          |> put_status(:bad_request)
+          |> json(%{error: error_messages(changeset)})
+          |> halt
+        end
+      end
     end
   end
 

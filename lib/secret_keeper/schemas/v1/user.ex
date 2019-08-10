@@ -30,13 +30,34 @@ defmodule SecretKeeper.Schemas.V1.User do
     user
     |> cast(attrs, @cast_params)
     |> validate_required(@cast_params)
-    |> EmailHelper.validate_email()
+    |> EmailHelper.validate()
     |> validate_length(:password, min: 8)
     |> validate_confirmation(:password)
     |> put_password_hash()
   end
 
-  def put_password_hash(changeset) do
+  def get_by_id(id) do
+    Repo.get_by(__MODULE__, %{id: id, is_deleted: false})
+  end
+
+  def get_user_by_email(email) do
+    Repo.get_by(__MODULE__, %{email: email, is_deleted: false})
+  end
+
+  def does_user_exist(email) do
+    case Repo.get_by(__MODULE__, %{email: email, is_deleted: false}) do
+      nil -> false
+      %__MODULE__{} -> true
+    end
+  end
+
+  def create(attrs) do
+    %__MODULE__{}
+    |> changeset(attrs)
+    |> Repo.insert()
+  end
+
+  defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
