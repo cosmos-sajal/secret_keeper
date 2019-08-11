@@ -10,7 +10,8 @@ defmodule SecretKeeper.ParamsValidation.V1.UserModule.ValidateLoginData do
   @cast_params [
     :email,
     :password,
-    :device_id
+    :device_id,
+    :token
   ]
 
   @primary_key false
@@ -18,6 +19,7 @@ defmodule SecretKeeper.ParamsValidation.V1.UserModule.ValidateLoginData do
     field(:email, :string, null: false)
     field(:password, :string, null: false)
     field(:device_id, :string, null: false)
+    field(:token, :string, null: false)
   end
 
   def changeset(struct, params \\ %{}) do

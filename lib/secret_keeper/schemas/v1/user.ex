@@ -9,7 +9,8 @@ defmodule SecretKeeper.Schemas.V1.User do
     :name,
     :email,
     :password,
-    :password_confirmation
+    :password_confirmation,
+    :totp_key
   ]
 
   schema "users" do
@@ -19,6 +20,7 @@ defmodule SecretKeeper.Schemas.V1.User do
     field(:password_hash, :string, null: false)
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
+    field(:totp_key, :string, null: false)
 
     soft_delete_schema()
     uuid_schema()

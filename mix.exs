@@ -47,7 +47,8 @@ defmodule SecretKeeper.Mixfile do
       {:bcrypt_elixir, "~> 1.0"},
       {:plug_cowboy, "~> 1.0"},
       {:jason, "~> 1.1"},
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:pot, "~> 0.9.6"}
     ]
   end
 
