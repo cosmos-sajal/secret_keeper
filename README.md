@@ -3,7 +3,7 @@
 This is a WIP repo, a side project.
 The aim of the repo is -
   * To provide a cloud based solution for safely storing keys, credentials, passwords of the users without worrying
-  security.
+  about security.
   * All the data will be encrypted, and can only be decrypted using a key, (the key will be of two parts, one part
   will be your master password, the other part will be stored at our side). To get your credentials you will need 
   both of them.
