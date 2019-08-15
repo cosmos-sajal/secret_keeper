@@ -48,7 +48,9 @@ defmodule SecretKeeper.Mixfile do
       {:plug_cowboy, "~> 1.0"},
       {:jason, "~> 1.1"},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:pot, "~> 0.9.6"}
+      {:pot, "~> 0.9.6"},
+      {:redix, ">= 0.0.0"},
+      {:castore, ">= 0.0.0"}
     ]
   end
 

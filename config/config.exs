@@ -40,6 +40,11 @@ config :secret_keeper, SecretKeeper.Auth.AuthAccessPipeline,
   module: SecretKeeper.Auth.Guardian,
   error_handler: SecretKeeper.Auth.AuthErrorHandler
 
+config :secret_keeper, SecretKeeper.CachingModule.CacheService,
+  redis_host: "localhost",
+  redis_port: "6379",
+  redis_database: "3"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
