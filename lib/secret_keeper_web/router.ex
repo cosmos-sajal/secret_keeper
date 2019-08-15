@@ -23,6 +23,7 @@ defmodule SecretKeeperWeb.Router do
     scope "/v1", Api.V1, as: :v1 do
       post("/user/register", AuthModule.AuthController, :register)
       post("/user/login", AuthModule.AuthController, :login)
+      get("/validate/user/email", AuthModule.AuthController, :validate_email)
     end
   end
 

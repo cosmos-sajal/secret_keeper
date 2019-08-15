@@ -26,6 +26,11 @@ defmodule SecretKeeperWeb.Api.V1.AuthModule.AuthController do
     :validate_logout_data when action in [:logout]
   )
 
+  plug(
+    SecretKeeper.ParamsValidation.V1.UserModule.ValidateEmailVerificationData,
+    :validate_email_verification_data when action in [:validate_email]
+  )
+
   def register(conn, params) do
     with validated_params <- conn.assigns.validate_register_data,
          {:ok, response} <- RegisterService.register_user(validated_params) do
@@ -37,6 +42,14 @@ defmodule SecretKeeperWeb.Api.V1.AuthModule.AuthController do
   def login(conn, params) do
     with validated_params <- conn.assigns.validate_login_data,
          {:ok, response} <- LoginService.login_user(validated_params) do
+      conn
+      |> json(response)
+    end
+  end
+
+  def validate_email(conn, params) do
+    with validated_params <- conn.assigns.validate_email_verification_data,
+         {:ok, response} <- RegisterService.validate_email(validated_params) do
       conn
       |> json(response)
     end

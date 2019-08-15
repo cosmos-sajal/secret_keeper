@@ -50,7 +50,8 @@ defmodule SecretKeeper.Mixfile do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:pot, "~> 0.9.6"},
       {:redix, ">= 0.0.0"},
-      {:castore, ">= 0.0.0"}
+      {:castore, ">= 0.0.0"},
+      {:bamboo, "~> 1.3"}
     ]
   end
 

@@ -45,6 +45,10 @@ config :secret_keeper, SecretKeeper.CachingModule.CacheService,
   redis_port: "6379",
   redis_database: "3"
 
+config :secret_keeper, SecretKeeper.MailerModule.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: "my_api_key"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
