@@ -21,6 +21,13 @@ defmodule SecretKeeper.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: SecretKeeper.Supervisor]
     Supervisor.start_link(children, opts)
+
+    # Get Redix configuration
+    host = Application.get_env(:secret_keeper, :redis_host)
+    port = Application.get_env(:secret_keeper, :redis_port)
+    database = Application.get_env(:secret_keeper, :redis_database)
+    # Start redix connection
+    {:ok, redis_conn} = Redix.start_link("redis://#{host}:#{port}/#{database}", name: :redix)
   end
 
   # Tell Phoenix to update the endpoint configuration
