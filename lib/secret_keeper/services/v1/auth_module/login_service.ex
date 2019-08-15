@@ -12,6 +12,7 @@ defmodule SecretKeeper.Services.V1.AuthModule.LoginService do
     with {:ok, user} <- Auth.password_sign_in(email, password),
          totp_key <- CryptographyService.decrypt(user.totp_key, password),
          true <- TOTPService.check_token(totp_key, token),
+         {:ok} <- is_email_verified(user),
          {:ok, tokens} <- Auth.create_tokens(user, device_id) do
       {:ok, %{"tokens" => tokens}}
     else
@@ -23,6 +24,13 @@ defmodule SecretKeeper.Services.V1.AuthModule.LoginService do
 
       {:error, code, message} ->
         {:error, code, message}
+    end
+  end
+
+  defp is_email_verified(user) do
+    case user.is_email_verified do
+      true -> {:ok}
+      false -> {:error, :forbidden, %{message: "Please verify your email before proceeding"}}
     end
   end
 end

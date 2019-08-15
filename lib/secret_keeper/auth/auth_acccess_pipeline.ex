@@ -6,4 +6,5 @@ defmodule SecretKeeper.Auth.AuthAccessPipeline do
   plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
   plug(Guardian.Plug.EnsureAuthenticated)
   plug(Guardian.Plug.LoadResource)
+  plug(SecretKeeper.Auth.EnsureEmailVerification)
 end

@@ -10,8 +10,11 @@ defmodule SecretKeeper.Schemas.V1.User do
     :email,
     :password,
     :password_confirmation,
-    :totp_key
+    :totp_key,
+    :is_email_verified
   ]
+
+  @required_params [:name, :email, :password, :password_confirmation, :totp_key]
 
   schema "users" do
     field(:name, :string, null: false)
@@ -31,7 +34,7 @@ defmodule SecretKeeper.Schemas.V1.User do
   def changeset(user, attrs \\ %{}) do
     user
     |> cast(attrs, @cast_params)
-    |> validate_required(@cast_params)
+    |> validate_required(@required_params)
     |> EmailHelper.validate()
     |> validate_length(:password, min: 8)
     |> validate_confirmation(:password)
@@ -57,6 +60,19 @@ defmodule SecretKeeper.Schemas.V1.User do
     %__MODULE__{}
     |> changeset(attrs)
     |> Repo.insert()
+  end
+
+  @doc """
+  Updates user with the given changeset
+  """
+  def update(user, attrs \\ %{}) do
+    user
+    |> change(attrs)
+    |> Repo.update()
+  end
+
+  def get_by_uuid(uuid) do
+    Repo.get_by(__MODULE__, %{uuid: uuid, is_deleted: false})
   end
 
   defp put_password_hash(changeset) do
