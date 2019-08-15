@@ -19,7 +19,7 @@ defmodule SecretKeeper.Services.V1.AuthModule.RegisterService do
          {:ok, email_verification_key} <- create_txn_id_for_email_confirmation(user) do
       ## send email
       link =
-        "#{SecretKeeperWeb.Endpoint.url()}/api/v1 /validate/user/email?#{email_verification_key}"
+        "#{SecretKeeperWeb.Endpoint.url()}/api/v1/validate/user/email?#{email_verification_key}"
 
       Mailer.send_email_verification_mail(user.email, link)
 
