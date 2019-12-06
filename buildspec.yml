@@ -17,6 +17,7 @@ phases:
       - apt-get -y install postgresql postgresql-contrib
       - apt-get -y install xfonts-base xfonts-75dpi
       - wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb
+      - apt -f install
       - dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
       - service redis-server restart
   build:
