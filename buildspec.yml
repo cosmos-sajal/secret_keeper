@@ -19,6 +19,11 @@ phases:
       - apt-get -y install wkhtmltopdf
       - apt-get -y install redis-server
       - service redis-server restart
+      - wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
+      - apt-get update
+      - apt-get -y install esl-erlang
+      - apt-get -y install elixir
+      - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
   build:
     commands:
       - mix format --check-formatted --dry-run --check-equivalent
