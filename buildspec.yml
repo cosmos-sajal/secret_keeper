@@ -17,6 +17,7 @@ phases:
       - apt-get -y install postgresql postgresql-contrib
       - apt-get -y install xfonts-base xfonts-75dpi
       - apt-get -y install wkhtmltopdf
+      - apt-get -y install redis-server
       - service redis-server restart
   build:
     commands:
