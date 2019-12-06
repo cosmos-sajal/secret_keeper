@@ -9,15 +9,15 @@ env:
 phases:
   install:
     commands:
-      - sudo apt-get update
-      - sudo apt-get --yes remove postgresql\*
-      - sudo apt-get install -y postgresql-11 postgresql-client-11
-      - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
-      - sudo service postgresql restart 11
-      - sudo apt-get -y install xfonts-base xfonts-75dpi
-      - sudo wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb
-      - sudo dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
-      - sudo service redis-server restart
+      - apt-get update
+      - apt-get --yes remove postgresql\*
+      - apt-get install -y postgresql-11 postgresql-client-11
+      - cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+      - service postgresql restart 11
+      - apt-get -y install xfonts-base xfonts-75dpi
+      - wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb
+      - dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
+      - service redis-server restart
   build:
     commands:
       - mix format --check-formatted --dry-run --check-equivalent
