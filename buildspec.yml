@@ -24,8 +24,8 @@ phases:
       - apt-get update
       - apt-get -y install esl-erlang
       - apt-get -y install elixir
-      - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
       - touch config/test.secret.exs
+      - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
   build:
     commands:
       - mix format --check-formatted --dry-run --check-equivalent
