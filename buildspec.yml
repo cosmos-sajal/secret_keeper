@@ -9,6 +9,7 @@ env:
 phases:
   install:
     commands:
+      - export MIX_ENV=test
       - apt-get update
       - apt-get -y install wget ca-certificates
       - wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
@@ -24,6 +25,7 @@ phases:
       - apt-get -y install esl-erlang
       - apt-get -y install elixir
       - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
+      - touch config/test.secret.exs
   build:
     commands:
       - mix format --check-formatted --dry-run --check-equivalent
