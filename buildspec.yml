@@ -1,0 +1,38 @@
+language: elixir
+
+elixir:
+  - 1.8.1
+
+otp_release:
+  - '21.0'
+
+env:
+  - MIX_ENV=test
+
+addons:
+  postgresql: '11.2'
+
+services:
+  - postgresql
+  - redis-server
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-11 postgresql-client-11
+  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+  - sudo service postgresql restart 11
+  - sudo apt-get -y install xfonts-base xfonts-75dpi
+  - sudo wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb
+  - sudo dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
+  - sudo service redis-server restart
+
+before_script:
+  - psql --version
+  - mix do ecto.create, ecto.migrate
+
+script:
+  - mix format --check-formatted --dry-run --check-equivalent
+  - mix credo
+  - mix coveralls.html
+
