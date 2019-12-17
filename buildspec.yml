@@ -29,6 +29,7 @@ phases:
   build:
     commands:
       - mix local.hex --force
+      - mix local.rebar --force
       - mix deps.get
       - mix format --check-formatted --dry-run --check-equivalent
       - mix credo
