@@ -17,4 +17,3 @@ config :secret_keeper, SecretKeeper.Repo,
   database: "secret_keeper_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
-
