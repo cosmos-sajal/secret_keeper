@@ -28,7 +28,7 @@ phases:
       - apt-get -y install erlang-crypto
   build:
     commands:
-      - mix local.hex
+      - mix local.hex --force
       - mix deps.get
       - mix format --check-formatted --dry-run --check-equivalent
       - mix credo
