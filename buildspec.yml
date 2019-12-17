@@ -1,5 +1,5 @@
 version: 0.2
-
+  
 run-as: root
 
 env:
@@ -13,11 +13,20 @@ phases:
       - apt-get update
       - adduser ubuntu
       - ls -l /home
-      - apt-get -y install netcat
       - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - apt-get -y install postgresql postgresql-contrib
-      - cat /usr/sbin/policy-rc.d
-      - nc -v localhost 5432
+      - apt-get -y install xfonts-base xfonts-75dpi
+      - apt-get -y install wkhtmltopdf
+      - apt-get -y install redis-server
+      - service redis-server restart
+      - wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && dpkg -i erlang-solutions_2.0_all.deb
+      - apt-get update
+      - apt-get -y install esl-erlang
+      - apt-get -y install erlang-dev
+      - apt-get -y install erlang-parsetools
+      - apt-get -y install elixir
+      - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
+      - apt-get -y install erlang-crypto
   build:
     commands:
       - mix local.hex --force
@@ -28,4 +37,3 @@ phases:
       - mix credo
       - mix do ecto.create, ecto.migrate
       - mix coveralls.html
-
