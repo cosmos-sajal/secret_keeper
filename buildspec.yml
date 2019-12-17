@@ -35,5 +35,6 @@ phases:
       - mix deps.compile gettext
       - mix format --check-formatted --dry-run --check-equivalent
       - mix credo
+      - mix do ecto.create, ecto.migrate
       - mix coveralls.html
 
