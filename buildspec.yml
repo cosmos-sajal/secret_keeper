@@ -27,6 +27,7 @@ phases:
       - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
   build:
     commands:
+      - mix local.hex
       - mix deps.get
       - mix format --check-formatted --dry-run --check-equivalent
       - mix credo
