@@ -11,6 +11,7 @@ phases:
     commands:
       - export MIX_ENV=test
       - apt-get update
+      - adduser ubuntu
       - ls -l /home
       - apt-get -y install wget ca-certificates
       - wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
