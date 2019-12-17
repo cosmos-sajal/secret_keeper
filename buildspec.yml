@@ -11,10 +11,12 @@ phases:
     commands:
       - export MIX_ENV=test
       - apt-get update
+      -	sh -c 'echo exit 0 > /usr/sbin/policy-rc.d'
       - adduser ubuntu
       - ls -l /home
       - apt-get -y install netcat
       - apt-get -y install postgresql postgresql-contrib
+      - cat /usr/sbin/policy-rc.d
       - nc -v localhost 5432
   build:
     commands:
