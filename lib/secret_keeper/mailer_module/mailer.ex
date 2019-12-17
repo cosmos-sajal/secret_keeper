@@ -1,4 +1,8 @@
 defmodule SecretKeeper.MailerModule.Mailer do
+  @moduledoc """
+  MailerModule
+  """
+
   use Bamboo.Mailer, otp_app: :secret_keeper
 
   import Bamboo.Email

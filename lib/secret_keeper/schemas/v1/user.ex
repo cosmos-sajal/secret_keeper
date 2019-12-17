@@ -1,5 +1,6 @@
 defmodule SecretKeeper.Schemas.V1.User do
   @moduledoc """
+  User Schema
   """
   use SecretKeeper, :model
 

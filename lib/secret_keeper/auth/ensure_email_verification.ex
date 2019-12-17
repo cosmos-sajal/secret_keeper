@@ -1,5 +1,6 @@
 defmodule SecretKeeper.Auth.EnsureEmailVerification do
   @moduledoc """
+  Email verification
   """
   import Plug.Conn
 
