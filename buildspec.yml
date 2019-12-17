@@ -30,6 +30,7 @@ phases:
     commands:
       - mix local.hex --force
       - mix local.rebar --force
+      - mix deps.compile gettext
       - mix deps.get
       - mix format --check-formatted --dry-run --check-equivalent
       - mix credo
