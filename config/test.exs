@@ -18,4 +18,3 @@ config :secret_keeper, SecretKeeper.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-import_config "test.secret.exs"
