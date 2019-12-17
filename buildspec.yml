@@ -13,8 +13,8 @@ phases:
       - apt-get update
       - adduser ubuntu
       - ls -l /home
+      - apt-get -y install netcat
       - apt-get -y install postgresql postgresql-contrib
-      - telnet localhost 5432
       - nc -v localhost 5432
   build:
     commands:
