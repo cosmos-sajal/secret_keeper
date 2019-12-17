@@ -14,6 +14,7 @@ phases:
       - adduser ubuntu
       - ls -l /home
       - apt-get -y install netcat
+      - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - apt-get -y install postgresql postgresql-contrib
       - cat /usr/sbin/policy-rc.d
       - nc -v localhost 5432
