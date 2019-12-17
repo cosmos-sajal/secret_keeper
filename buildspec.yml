@@ -15,6 +15,7 @@ phases:
       - ls -l /home
       - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - apt-get -y install postgresql postgresql-contrib
+      - sudo -u postgres psql postgres -c "ALTER USER postgres WITH PASSWORD 'postgres';"
       - apt-get -y install xfonts-base xfonts-75dpi
       - apt-get -y install wkhtmltopdf
       - apt-get -y install redis-server
