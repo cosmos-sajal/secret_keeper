@@ -1,6 +1,6 @@
 version: 0.2
-
-run-as: root
+  
+run-as: ubuntu
 
 env:
   exported_variables:
@@ -11,11 +11,7 @@ phases:
     commands:
       - export MIX_ENV=test
       - apt-get update
-      - adduser ubuntu
-      - ls -l /home
-      - apt-get -y install wget ca-certificates
-      - wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-      - sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+      - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - apt-get -y install postgresql postgresql-contrib
       - apt-get -y install xfonts-base xfonts-75dpi
       - apt-get -y install wkhtmltopdf
@@ -28,7 +24,7 @@ phases:
       - apt-get -y install erlang-parsetools
       - apt-get -y install elixir
       - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
-      - apt-get -y install erlang-crypto  
+      - apt-get -y install erlang-crypto
   build:
     commands:
       - mix local.hex --force
@@ -39,4 +35,3 @@ phases:
       - mix credo
       - mix do ecto.create, ecto.migrate
       - mix coveralls.html
-

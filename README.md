@@ -23,4 +23,4 @@ The aim of the repo is -
   * Passwords are hashed in our DB.
   * totp_keys are encrypted in our DB.
   * totp_keys are encrypted using your password, so we can't decrypt it as we don't have your passwords. (We have
-  the hashed values only)
+  the hashed  values only)
