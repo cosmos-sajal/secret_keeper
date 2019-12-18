@@ -21,8 +21,8 @@ phases:
       - service redis-server restart
       - wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && dpkg -i erlang-solutions_2.0_all.deb
       - apt-get update
+      - apt-get -y install erlang-dev erlang-ssl erlang-inets erlang-edoc erlang-eunit erlang-tools erlang-common-test
       - apt-get -y install esl-erlang
-      - apt-get -y install erlang-dev
       - apt-get -y install erlang-parsetools
       - apt-get -y install elixir
       - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
