@@ -1,6 +1,6 @@
 version: 0.2
   
-run-as: ubuntu
+run-as: root
 
 env:
   exported_variables:
