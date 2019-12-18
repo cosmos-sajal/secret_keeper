@@ -9,7 +9,7 @@ env:
 phases:
   install:
     commands:
-      - sudo export MIX_ENV=test
+      - runuser -l root -c 'export MIX_ENV=test'
       - sudo apt-get update
       - sudo sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - sudo apt-get -y install postgresql postgresql-contrib
