@@ -14,7 +14,7 @@ phases:
       - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - apt-get -y install postgresql postgresql-contrib
       - sed -i 's/md5/trust/g' /etc/postgresql/10/main/pg_hba.conf
-      - systemctl restart postgresql
+      - service postgresql restart
       - apt-get -y install xfonts-base xfonts-75dpi
       - apt-get -y install wkhtmltopdf
       - apt-get -y install redis-server
