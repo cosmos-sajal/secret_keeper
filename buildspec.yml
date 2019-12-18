@@ -9,10 +9,10 @@ env:
 phases:
   install:
     commands:
-      - runuser -l root -c 'export MIX_ENV=test'
-      - sudo apt-get update
-      - sudo sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
-      - sudo apt-get -y install postgresql postgresql-contrib
+      - export MIX_ENV=test
+      - apt-get update
+      - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
+      - apt-get -y install postgresql postgresql-contrib
       - apt-get -y install xfonts-base xfonts-75dpi
       - apt-get -y install wkhtmltopdf
       - apt-get -y install redis-server
