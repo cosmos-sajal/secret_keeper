@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :secret_keeper, SecretKeeper.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+  password: "",
   database: "secret_keeper_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
