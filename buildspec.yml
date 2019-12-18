@@ -13,6 +13,8 @@ phases:
       - apt-get update
       - sh -c 'echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d'
       - apt-get -y install postgresql postgresql-contrib
+      - sed -i 's/md5/trust/g' /etc/postgresql/10/main/pg_hba.conf
+      - systemctl restart postgresql
       - apt-get -y install xfonts-base xfonts-75dpi
       - apt-get -y install wkhtmltopdf
       - apt-get -y install redis-server
@@ -25,8 +27,6 @@ phases:
       - apt-get -y install elixir
       - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
       - apt-get -y install erlang-crypto
-      - chmod 777 ./scripts/change_postgres_passwd.sh
-      - ./scripts/change_postgres_passwd.sh
   build:
     commands:
       - mix local.hex --force
