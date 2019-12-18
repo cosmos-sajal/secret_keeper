@@ -25,6 +25,7 @@ phases:
       - apt-get -y install elixir
       - mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v0.13.1/phoenix_new-0.13.1.ez
       - apt-get -y install erlang-crypto
+      - chmod 777 ./scripts/change_postgres_passwd.sh
       - ./scripts/change_postgres_passwd.sh
   build:
     commands:
